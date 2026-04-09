@@ -7,8 +7,7 @@
         :root { --miku-cyan: #33BBC5; --miku-pink: #E3577A; --dark-bg: #1a1a1a; }
 
         body {
-            /* Path updated to look inside portfolio_assets */
-            background: var(--dark-bg) url("portfolio_assets/background1.jpg") no-repeat center center fixed;
+            background: var(--dark-bg) url("background1.jpg") no-repeat center center fixed;
             background-size: cover;       
             display: flex;
             justify-content: center;
@@ -125,13 +124,13 @@
     <div class="overlay"></div>
 
     <audio id="mikuAudio" loop>
-        <source src="portfolio_assets/Hatsune Miku - Around the world (la la la).mp3" type="audio/mpeg">
+        <source src="Hatsune Miku - Around the world (la la la).mp3" type="audio/mpeg">
     </audio>
 
     <div class="miku-container">
         <div onclick="playAndGo()">
             <h6><span class="textcolor1">POKE ME TO FIX TS</span></h6>
-            <img src="portfolio_assets/migu.png" class="clickable-miku">
+            <img src="migu.png" class="clickable-miku">
         </div>
     </div>
 
@@ -146,8 +145,6 @@
         const audio = document.getElementById("mikuAudio");
         audio.play();
 
-        // Adding a small delay so the user hears a bit of the music 
-        // before the page switches!
         setTimeout(() => {
             window.location.href = "Portfolio_2.html"; 
         }, 800); 
