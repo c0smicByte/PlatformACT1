@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lovely Miku Beam Diner House</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --miku-teal: #00bfa6;
+    --miku-pink: #ff77cc;
+    --diner-bg: #fff5fa;
+    --neon-mint: #66ffe0;
+    --font-family-heading: 'Fredoka One', cursive;
+    --font-family-body: 'Quicksand', sans-serif;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-family-body);
+    background: radial-gradient(#ffd6ec 2px, transparent 2px);
+    background-size: 20px 20px;
+    background-color: var(--diner-bg);
+    color: #444;
+  }
+
+  nav.diner-nav {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 15px;
+    z-index: 1000;
+  }
+
+  .nav-item {
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: 3px solid var(--miku-pink);
+    color: var(--miku-pink);
+    text-decoration: none;
+    font-family: var(--font-family-heading);
+    box-shadow: 0 4px 0 #ffb3e6;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .nav-item:hover { 
+    transform: translateY(-2px); 
+    background: #ffecf7; 
+  }
+
+  /* HERO */
+  .hero {
+    text-align: center;
+    padding: 120px 20px 60px;
+    background: linear-gradient(180deg, #ffe6f7, #fff);
+  }
+
+  .hero h1 {
+    font-family: var(--font-family-heading);
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    color: var(--miku-pink);
+    text-shadow: 4px 4px 0 #fff, 8px 8px 0 #ff99dd;
+    animation: neon-pulse 2s infinite alternate;
+    margin: 0;
+  }
+
+  @keyframes neon-pulse {
+    from { text-shadow: 4px 4px 0 #fff, 8px 8px 0 #ff99dd; }
+    to { text-shadow: 0 0 15px var(--neon-mint), 4px 4px 0 #fff, 8px 8px 0 #ff99dd; }
+  }
+
+  .hero img {
+    width: 400px;
+    max-width: 90%;
+    border-radius: 25px;
+    border: 5px solid white;
+    box-shadow: 0 15px 35px rgba(255, 119, 204, 0.3);
+  }
+
+  /* MENU SECTIONS */
+  .menu-container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 40px 20px;
+  }
+
+  .section-title {
+    text-align: center;
+    color: var(--miku-pink);
+    font-family: var(--font-family-heading);
+    font-size: 2.2rem;
+    margin: 50px 0 20px;
+    text-transform: uppercase;
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .menu-item {
+    background: #fff;
+    border: 3px dashed var(--miku-teal);
+    border-radius: 20px;
+    padding: 20px;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .menu-item:hover {
+    transform: translateY(-8px);
+    border-style: solid;
+    box-shadow: 0 10px 25px rgba(0, 191, 166, 0.2);
+  }
+
+  /* NEW IMAGE STYLES */
+  .menu-img-container {
+    width: 100%;
+    height: 180px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    background-color: #fff;
+    border: 2px solid #ffecf7;
+  }
+
+  .menu-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .menu-item:hover .menu-img {
+    transform: scale(1.1);
+  }
+
+  .menu-item h3 {
+    color: var(--miku-pink);
+    margin: 10px 0;
+    font-family: var(--font-family-heading);
+    font-size: 1.2rem;
+  }
+
+  .menu-item p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin-bottom: 10px;
+    flex-grow: 1;
+  }
+
+  /* Buttons */
+  .add-btn {
+    background: var(--miku-pink);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-family: var(--font-family-heading);
+    cursor: pointer;
+    margin-top: 15px;
+    font-size: 1rem;
+    transition: background 0.2s;
+    width: 100%;
+  }
+
+  .add-btn:hover {
+    background: #e65cae;
+  }
+
+  /* LOGIN MODAL */
+  .login-overlay {
+    display: none; 
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(255, 119, 204, 0.5);
+    backdrop-filter: blur(8px);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .loyalty-card {
+    background: #fff;
+    width: 350px;
+    border-radius: 25px;
+    border: 6px solid var(--miku-teal);
+    overflow: hidden;
+    max-width: 90%;
+  }
+
+  .loyalty-header {
+    background: var(--miku-teal);
+    color: #fff;
+    padding: 20px;
+    font-family: var(--font-family-heading);
+    font-size: 1.5rem;
+    margin: 0;
+    text-align: center;
+  }
+
+  .loyalty-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .loyalty-input {
+    width: 85%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #ffcce6;
+    border-radius: 10px;
+    font-family: var(--font-family-body);
+  }
+
+  /* MARQUEE */
+  .marquee-bar {
+    overflow: hidden;
+    white-space: nowrap;
+    background: #ffcce6;
+    border-top: 3px solid #fff;
+    border-bottom: 3px solid #fff;
+  }
+
+  .marquee-bar span {
+    display: inline-block;
+    padding: 12px;
+    animation: scroll 12s linear infinite;
+    color: #ff3399;
+    font-weight: bold;
+  }
+
+  @keyframes scroll {
+    from { transform: translateX(100%); }
+    to { transform: translateX(-100%); }
+  }
+
+  /* ABOUT SECTION */
+  .about {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(#e0f7ff, #fff);
+  }
+
+  .about img {
+    width: 240px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+  }
+
+  .about p {
+    max-width: 520px;
+    margin: auto;
+    font-size: 1rem;
+    line-height: 1.4;
+    margin-bottom: 20px;
+  }
+
+  /* FOOTER */
+  footer.footer {
+    text-align: center;
+    padding: 40px 20px;
+    background: #f9f9f9;
+    font-size: 0.9rem;
+    color: #555;
+  }
+
+html {
+  scroll-behavior: smooth;
+}
+
+</style>
+</head>
+<body>
+
+<nav class="diner-nav" aria-label="Main Navigation">
+  <a href="#home" class="nav-item">🏠 Home</a>
+  <a href="#products" class="nav-item">🍔 Products</a>
+  <a href="#about" class="nav-item">💖 About</a>
+  <a href="#contact" class="nav-item">📞 Contact</a>
+  <button class="nav-item" onclick="openLogin()">💳 Loyalty</button>
+  <div class="nav-item">🛒 <span id="cartCount">0</span></div>
+</nav>
+
+<section class="hero" id="home">
+  <h1>LOVELY MIKU BEAM DINER HOUSE</h1>
+  <img src="miguserves.jpg" alt="Miku Serving Food" />
+</section>
+
+<div class="marquee-bar">
+  <span>NOW OPEN! ✨ Est. 2011.11.11 ✨ WELCOME TO THE CUTEST DINER EVER! ✨ ORDER 39 MEGA MIKU BURGER BURGER NOW! ✨</span>
+</div>
+
+<div class="menu-container" id="products">
+  <h2 class="section-title">🎤 Main Stage Entrees</h2>
+  <div class="menu-grid">
+    <div class="menu-item">
+
+      <div class="menu-img-container"><img src="business_assets/burger.png" alt="Burger" class="menu-img"></div>
+      <h3>39 Mega Miku Burger 💚</h3>
+      <p>Triple-layer burger with “39” flag.</p>
+      <button class="add-btn" type="button" onclick="add()">+ Add to Tray</button>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-img-container"><img src="business_assets/omurice.png" alt="Omurice" class="menu-img"></div>
+      <h3>Miku Melody Omurice 🍳</h3>
+      <p>Special omelet rice with hatsune miku and music notes ketchup.</p>
+      <button class="add-btn" type="button" onclick="add()">+ Add to Tray</button>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-img-container"><img src="business_assets/hotdog.png" alt="Hotdog" class="menu-img"></div>
+      <h3>Neon Stage Hotdog 🌭</h3>
+      <p>Bright toppings with mustard colored into teal & ketchup colored into pink sauce drizzle.</p>
+      <button class="add-btn" type="button" onclick="add()">+ Add to Tray</button>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-img-container"><img src="business_assets/ramen.png" alt="Ramen" class="menu-img"></div>
+      <h3>Digital Diva Ramen 🍜</h3>
+      <p>Special light broth ramen.</p>
+      <button class="add-btn" type="button" onclick="add()">+ Add to Tray</button>
+    </div>
+  </div>
+
+  <h2 class="section-title">🎸 Side Tracks</h2>
+
+  <div class="menu-grid">
+    <div class="menu-item">
+      <div class="menu-img-container"><img src="business_assets/onion_rings.jpg" alt="Onion Rings" class="menu-img"></div>
+      <h3>Leek Loop Onion Rings 🧅</h3>
+      <p>Miku’s iconic green onion reference!</p>
+      <button class="add-btn" type="button" onclick="add()">+ Add to Tray</button>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-img-container"><img src="business_assets/fries.jpg" alt="Fries" class="menu-img"></div>
+      <h3>Hologram Fries 🍟</h3>
+      <p>Shimmery salted fries.</p>
+      <button class="add-btn" type="button" onclick="add()">+ Add to Tray</button>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-img-container"><img src="business_assets/pancakes.png" alt="Pancakes" class="menu-img"></div>
+      <h3>Stage Light Pancakes 🥞</h3>
+      <p>Stack with glowing syrup + pastel butter.</p>
+      <button class="add-btn" type="button" onclick="add()">+ Add to Tray</button>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-img-container"><img src="business_assets/mochi.png" alt="Mochi" class="menu-img"></div>
+      <h3>Chibi Mochi Bites 🍡</h3>
+      <p>Tiny pastel mochi in cute colors with a drawn chocolate chibi miku.</p>
+      <button class="add-btn" type="button" onclick="add()">+ Add to Tray</button>
+    </div>
+  </div>
+
+  <h2 class="section-title">🍦 Encore: Sweets & Sips</h2>
+
+  <div class="menu-grid">
+    <div class="menu-item">
+      <div class="menu-img-container"><img src="business_assets/cake.png" alt="Cake" class="menu-img"></div>
+      <h3>World is Shortcake 🍰</h3>
+      <p>Fancy strawberry layered shortcake.</p>
+      <button class="add-btn" type="button" onclick="add()">+ Add to Tray</button>
+    </div>
+
+    <div class="menu-item">
+      <div class="menu-img-container"><img src="parfait.jpg" alt="Parfait" class="menu-img"></div>
+      <h3>Strawberry Idol Parfait 🍓</h3>
+      <p>Tall glass dessert with hearts + whipped cream.</p>
+      <button class="add-btn" type="button" onclick="add()">+ Add to Tray</button>
+    </div>
+    <div class="menu-item">
+      <div class="menu-img-container"><img src="soft_serve.jpg" alt="Ice Cream" class="menu-img"></div>
+      <h3>Vocaloid Swirl Soft Serve 🍦</h3>
+      <p>Teal + pink twist ice cream.</p>
+      <button class="add-btn" type="button" onclick="add()">+ Add to Tray</button>
+    </div>
+    <div class="menu-item">
+      <div class="menu-img-container"><img src="donuts.jpg" alt="Donuts" class="menu-img"></div>
+      <h3>Miku Beam Donuts 🍩</h3>
+      <p>Glazed donuts with neon drizzle ⚡.</p>
+      <button class="add-btn" type="button" onclick="add()">+ Add to Tray</button>
+    </div>
+    <div class="menu-item">
+      <div class="menu-img-container"><img src="business_assets/float.png" alt="Soda Float" class="menu-img"></div>
+      <h3>Leek Soda Float 🥤</h3>
+      <p>Mint soda + vanilla ice cream 💚.</p>
+      <button class="add-btn" type="button" onclick="add()">+ Add to Tray</button>
+    </div>
+    <div class="menu-item">
+      <div class="menu-img-container"><img src="boba.jpg" alt="Bubble Tea" class="menu-img"></div>
+      <h3>Digital Bubble Tea 🧋</h3>
+      <p>Teal milk tea with glowing tapioca pearls.</p>
+      <button class="add-btn" type="button" onclick="add()">+ Add to Tray</button>
+    </div>
+    <div class="menu-item">
+      <div class="menu-img-container"><img src="milkshake.jpg" alt="Milkshake" class="menu-img"></div>
+      <h3>Miku Mic Milkshake 🥛</h3>
+      <p>Served in a mic-shaped glass 🎤.</p>
+      <button class="add-btn" type="button" onclick="add()">+ Add to Tray</button>
+    </div>
+    <div class="menu-item">
+      <div class="menu-img-container"><img src="sparkle_fizz.jpg" alt="Sparkle Fizz" class="menu-img"></div>
+      <h3>Hatsune Sparkle Fizz 🍹</h3>
+      <p>Fizzy drink with glitter effect ✨.</p>
+      <button class="add-btn" type="button" onclick="add()">+ Add to Tray</button>
+    </div>
+  </div>
+</div>
+
+<div class="login-overlay" id="loginOverlay" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+  <div class="loyalty-card">
+    <h2 class="loyalty-header" id="loginTitle">LOYALTY CARD</h2>
+    <div class="loyalty-content">
+      <input type="text" placeholder="Username" class="loyalty-input" />
+      <button class="add-btn" style="width:85%" onclick="closeLogin()">PUNCH CARD</button>
+      <p onclick="closeLogin()" style="cursor:pointer; color:var(--miku-pink); font-size:0.8rem; margin-top:15px;">Back to Diner</p>
+    </div>
+  </div>
+</div>
+
+<section class="about" id="about">
+  <img src="migujuxebox.png" alt="Miku with jukebox" />
+  <p>
+    Hatsune Miku welcomes you to a space where music and milkshakes merge. 
+    We serve up double cheeseburgers, kawaii-retro vibes, and the best classic shakes this side of the metaverse.
+  </p>
+  <button class="add-btn" style="background: var(--neon-mint); color:#006666; padding: 12px 25px; width: auto;">Meet Miku!</button>
+</section>
+
+<footer class="footer">
+  <p>Open 24/7 (because Miku never sleeps)</p>
+	<h2 class="section-title">📞 Contact Us</h2>
+	<p>We’d love to hear from you, Customer! 💖</p>
+  <p><strong>Email:</strong> support@lovely-miku-diner.vocaloid</p>
+  <p><strong>Phone:</strong> +81 39-3939-3939</p>
+  <p><strong>Location:</strong> Sector 39, Virtual Tokyo, Sekai</p>
+
+ <button class="add-btn" style="background: var(--miku-teal);">
+    Send Message ✉️
+  <p>💖 🎶 💖</p>
+  <p>© 2011 Sa-fu // みくだよ</p>
+</footer>
+
+<script>
+  let count = 0;
+  function add() {
+    count++;
+    document.getElementById('cartCount').innerText = count;
+  }
+  function openLogin() { document.getElementById('loginOverlay').style.display = 'flex'; }
+  function closeLogin() { document.getElementById('loginOverlay').style.display = 'none'; }
+</script>
+
+</body>
+</html>

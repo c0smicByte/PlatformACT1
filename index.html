@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ALEXIS ANN'S PORTFOLIO</title> 
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --miku-cyan: #33BBC5; --miku-pink: #E3577A; --dark-bg: #1a1a1a; }
+
+        body {
+            /* Path updated to look inside portfolio_assets */
+            background: var(--dark-bg) url("portfolio_assets/background1.jpg") no-repeat center center fixed;
+            background-size: cover;       
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Orbitron', sans-serif;
+            color: white;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 10;
+            animation: flicker 0.15s infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.27; }
+            50% { opacity: 0.3; }
+            100% { opacity: 0.28; }
+        }
+
+        .miku-container {
+            text-align: center;
+            z-index: 2;
+        }
+
+        .clickable-miku {
+            width: 230px; 
+            cursor: pointer;
+            transition: transform 0.4s, filter 0.3s;
+            animation: float 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px var(--miku-cyan));
+        }
+
+        .clickable-miku:hover {
+            transform: scale(1.1) rotate(-3deg);
+            filter: drop-shadow(0 0 30px var(--miku-cyan));
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        h6 {
+            font-family: "DotGothic16", sans-serif;
+            margin-bottom: 20px;
+            font-size: 18px;
+            letter-spacing: 2px;
+        }
+
+        .textcolor1 {
+            background-color: var(--miku-cyan);
+            color: #1a1a1a;
+            padding: 10px 20px;
+            font-weight: bold;
+            box-shadow: 5px 5px 0px var(--miku-pink);
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .textcolor1:hover {
+            background-color: white;
+            transform: translate(5px, 5px);
+        }
+
+        .control-panel {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.85);
+            border: 1px solid var(--miku-cyan);
+            padding: 12px;
+            border-radius: 5px;
+            box-shadow: 4px 4px 0px var(--miku-pink);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .control-btn {
+            background: transparent;
+            color: var(--miku-cyan);
+            border: 1px solid var(--miku-cyan);
+            padding: 5px 10px;
+            cursor: pointer;
+            font-family: 'Orbitron';
+            font-size: 12px;
+        }
+
+        .control-btn:hover {
+            background: var(--miku-cyan);
+            color: black;
+        }
+
+        .label {
+            font-size: 10px;
+            color: var(--miku-cyan);
+            font-family: monospace;
+        }
+    </style>
+</head>
+
+<body> 
+
+    <div class="overlay"></div>
+
+    <audio id="mikuAudio" loop>
+        <source src="portfolio_assets/Hatsune Miku - Around the world (la la la).mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="miku-container">
+        <div onclick="playAndGo()">
+            <h6><span class="textcolor1">POKE ME TO FIX TS</span></h6>
+            <img src="portfolio_assets/migu.png" class="clickable-miku">
+        </div>
+    </div>
+
+    <div class="control-panel">
+        <span class="label">AUDIO</span>
+        <button class="control-btn" onclick="document.getElementById('mikuAudio').play()">▶</button>
+        <button class="control-btn" onclick="document.getElementById('mikuAudio').pause()">⏸</button>
+    </div>
+
+   <script>
+    function playAndGo() {
+        const audio = document.getElementById("mikuAudio");
+        audio.play();
+
+        // Adding a small delay so the user hears a bit of the music 
+        // before the page switches!
+        setTimeout(() => {
+            window.location.href = "Portfolio_2.html"; 
+        }, 800); 
+    }
+</script>
+
+</body>
+</html>
