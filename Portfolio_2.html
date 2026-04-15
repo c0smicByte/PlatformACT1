@@ -13,7 +13,7 @@
         }
 
         body {
-            background: #111 url("background2.jpg") no-repeat center center fixed;
+            background: #111 url("portfolio_assets/background2.jpg") no-repeat center center fixed;
             background-size: cover;
             color: white;
             font-family: 'Segoe UI', sans-serif;
@@ -120,6 +120,7 @@
             box-shadow: 0 0 15px var(--miku-pink);
         }
 
+
         .contact-form {
             background: rgba(0, 0, 0, 0.7);
             padding: 30px;
@@ -190,18 +191,6 @@
             color: black;
         }
 
-        .quiz-special {
-            border-color: var(--miku-pink);
-            color: var(--miku-pink);
-            font-family: "Orbitron", sans-serif;
-            font-size: 11px;
-            animation: glow 2s infinite;
-        }
-
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 5px var(--miku-pink); }
-            50% { box-shadow: 0 0 15px var(--miku-pink); }
-        }
     </style>
 </head>
 <body>
@@ -213,12 +202,12 @@
     </nav>
 
     	<audio id="mikuAudio" loop>
-    	<source src="Hatsune Miku - Around the world (la la la).mp3" type="audio/mpeg">
+    	<source src="portfolio_assets/Hatsune Miku - Around the world (la la la).mp3" type="audio/mpeg">
 	</audio>
 
     <section id="home">
         <div class="profile-container">
-            <img src="myself.jpg" class="profile-img" alt="Alexis Ann">
+            <img src="portfolio_assets/myself.jpg" class="profile-img" alt="Alexis Ann">
             <h1 style="font-family: 'Orbitron'; font-size: 2.2rem; margin: 10px 0; color: var(--miku-cyan);">ALEXIS ANN R. SUMALPONG</h1>
             <p style="font-family: 'DotGothic16'; font-size: 1.1rem; color: white;">
                 ♡ 19 | 💻 ACT Student | 🌸 ISFP | Learning HTML & CSS
@@ -230,24 +219,33 @@
     <section id="projects">
         <h2>My_Projects</h2>
         <div class="projects-grid">
+
             <div class="project-card">
                 <div style="font-family: monospace; font-size: 10px; color: var(--miku-pink);">ACT_02</div>
                 <h3 style="font-family: 'Orbitron'; margin: 10px 0;">Lovely Miku Beam Diner House</h3>
                 <p style="font-family: 'DotGothic16'; font-size: 13px;">An adorable Miku-Themed Diner House Website with the use of HTML and CSS with a bit of JS.</p>
                 <a href="diner.html" style="color: var(--miku-cyan); text-decoration: none; font-weight: bold; font-size: 12px;">SHOP_LINK →</a>
             </div>
-			
+
+	    <div class="project-card">
+                <div style="font-family: monospace; font-size: 10px; color: var(--miku-pink);">ACT_04</div>
+                <h3 style="font-family: 'Orbitron'; margin: 10px 0;">Social Media Content Plan</h3>
+                <p style="font-family: 'DotGothic16'; font-size: 13px;">Use Excel or Google Sheets to simulate a system.</p>
+                <a href="module2.html" target="_blank" style="color: var(--miku-cyan); text-decoration: none; font-weight: bold; font-size: 12px;">PPT_LINK →</a>
+            </div>
+
             <div class="project-card">
                 <div style="font-family: monospace; font-size: 10px; color: var(--miku-pink);">ACT_05</div>
                 <h3 style="font-family: 'Orbitron'; margin: 10px 0;">Platform Presentation + Demo</h3>
                 <p style="font-family: 'DotGothic16'; font-size: 13px;">Comparison of different platforms such as desktop, web applications, cloud, local storage, 		mobile apps, and web apps.</p>
                 <a href="module2.html" target="_blank" style="color: var(--miku-cyan); text-decoration: none; font-weight: bold; font-size: 12px;">PPT_LINK →</a>
             </div>
+
             <div class="project-card">
                 <div style="font-family: monospace; font-size: 10px; color: var(--miku-pink);">ACT_06</div>
                 <h3 style="font-family: 'Orbitron'; margin: 10px 0;">Digital Resume</h3>
                 <p style="font-family: 'DotGothic16'; font-size: 13px;">Personalized CV with QR code integration.</p>
-                <a href="module3.html" style="color: var(--miku-cyan); text-decoration: none; font-weight: bold; font-size: 12px;">RESUME_LINK →</a>
+                <a href="https://i.imgur.com/UPf1sZg.jpeg" style="color: var(--miku-cyan); text-decoration: none; font-weight: bold; font-size: 12px;">RESUME_LINK →</a>
             </div>
         </div>
     </section>
@@ -270,14 +268,15 @@
         <button class="control-btn" onclick="mikuAudio.play()">▶</button>
 	<button class="control-btn" onclick="mikuAudio.pause()">⏸</button>
         <div style="width: 1px; height: 20px; background: #444;"></div>
-        <button class="control-btn quiz-special" onclick="window.location.href='quiz.html'">QUIZ</button>
     </div>
 
 <script>
 window.addEventListener("load", () => {
     const audio = document.getElementById("mikuAudio");
 
+    // try to autoplay
     audio.play().catch(() => {
+        // if blocked, wait for user click
         document.addEventListener("click", () => {
             audio.play();
         }, { once: true });
