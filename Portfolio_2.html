@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -273,15 +274,10 @@
 <script>
 window.addEventListener("load", () => {
     const audio = document.getElementById("mikuAudio");
-
-    // try to autoplay
     audio.play().catch(() => {
-        // if blocked, wait for user click anywhere on page
-        const playOnInteraction = () => {
+        document.addEventListener("click", () => {
             audio.play();
-            document.removeEventListener("click", playOnInteraction);
-        };
-        document.addEventListener("click", playOnInteraction);
+        }, { once: true });
     });
 });
 </script>
