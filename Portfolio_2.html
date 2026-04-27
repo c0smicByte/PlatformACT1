@@ -14,7 +14,7 @@
         }
 
         body {
-            background: #111 url("background2.jpg") no-repeat center center fixed;
+            background: #111 url("portfolio_assets/background2.jpg") no-repeat center center fixed;
             background-size: cover;
             color: white;
             font-family: 'Segoe UI', sans-serif;
@@ -121,7 +121,6 @@
             box-shadow: 0 0 15px var(--miku-pink);
         }
 
-
         .contact-form {
             background: rgba(0, 0, 0, 0.7);
             padding: 30px;
@@ -161,7 +160,6 @@
             color: white;
         }
 
-
         .control-panel {
             position: fixed;
             bottom: 20px; 
@@ -191,7 +189,6 @@
             background: var(--miku-cyan);
             color: black;
         }
-
     </style>
 </head>
 <body>
@@ -203,12 +200,12 @@
     </nav>
 
     <audio id="mikuAudio" loop>
-        <source src="Hatsune Miku - Around the world (la la la).mp3" type="audio/mpeg">
+        <source src="portfolio_assets/Hatsune Miku - Around the world (la la la).mp3" type="audio/mpeg">
     </audio>
 
     <section id="home">
         <div class="profile-container">
-            <img src="myself.jpg" class="profile-img" alt="Alexis Ann">
+            <img src="portfolio_assets/myself.jpg" class="profile-img" alt="Alexis Ann">
             <h1 style="font-family: 'Orbitron'; font-size: 2.2rem; margin: 10px 0; color: var(--miku-cyan);">ALEXIS ANN R. SUMALPONG</h1>
             <p style="font-family: 'DotGothic16'; font-size: 1.1rem; color: white;">
                 ♡ 19 | 💻 ACT Student | 🌸 ISFP | Learning HTML & CSS
@@ -220,26 +217,23 @@
     <section id="projects">
         <h2>My_Projects</h2>
         <div class="projects-grid">
-
             <div class="project-card">
                 <div style="font-family: monospace; font-size: 10px; color: var(--miku-pink);">ACT_02</div>
                 <h3 style="font-family: 'Orbitron'; margin: 10px 0;">Lovely Miku Beam Diner House</h3>
                 <p style="font-family: 'DotGothic16'; font-size: 13px;">An adorable Miku-Themed Diner House Website with the use of HTML and CSS with a bit of JS.</p>
                 <a href="diner.html" style="color: var(--miku-cyan); text-decoration: none; font-weight: bold; font-size: 12px;">SHOP_LINK →</a>
             </div>
-
             <div class="project-card">
                 <div style="font-family: monospace; font-size: 10px; color: var(--miku-pink);">ACT_05</div>
                 <h3 style="font-family: 'Orbitron'; margin: 10px 0;">Platform Presentation + Demo</h3>
                 <p style="font-family: 'DotGothic16'; font-size: 13px;">Comparison of different platforms such as desktop, web applications, cloud, local storage, mobile apps, and web apps.</p>
                 <a href="https://canva.link/t4bw6gbqe4xfmb1" target="_blank" style="color: var(--miku-cyan); text-decoration: none; font-weight: bold; font-size: 12px;">PPT_LINK →</a>
             </div>
-
             <div class="project-card">
                 <div style="font-family: monospace; font-size: 10px; color: var(--miku-pink);">ACT_06</div>
                 <h3 style="font-family: 'Orbitron'; margin: 10px 0;">Digital Resume</h3>
                 <p style="font-family: 'DotGothic16'; font-size: 13px;">Personalized CV with QR code integration.</p>
-                <a href="https://i.imgur.com/p15MTJZ.png" style="color: var(--miku-cyan); text-decoration: none; font-weight: bold; font-size: 12px;">RESUME_LINK →</a>
+                <a href="https://i.imgur.com/UPf1sZg.jpeg" style="color: var(--miku-cyan); text-decoration: none; font-weight: bold; font-size: 12px;">RESUME_LINK →</a>
             </div>
         </div>
     </section>
@@ -248,32 +242,57 @@
         <h2>Contact_User</h2>
         <div class="contact-form">
             <p style="font-family: 'DotGothic16'; text-align: center; color: var(--miku-cyan);">[ INITIALIZING COMMUNICATION ]</p>
-            <form>
-                <input type="text" placeholder="NAME" required>
-                <input type="email" placeholder="EMAIL" required>
-                <textarea rows="4" placeholder="MESSAGE..."></textarea>
-                <button type="button" class="submit-btn">SEND DATA</button>
+            <form id="contact-form">
+                <input type="text" name="user_name" placeholder="NAME" required>
+                <input type="email" name="user_email" placeholder="EMAIL" required>
+                <textarea name="message" rows="4" placeholder="MESSAGE..."></textarea>
+                <button type="submit" class="submit-btn">SEND DATA</button>
             </form>
         </div>
     </section>
 
     <div class="control-panel">
         <span style="color:var(--miku-cyan); font-family: monospace; font-size: 10px;">AUDIO</span>
-        <button class="control-btn" onclick="document.getElementById('mikuAudio').play()">▶</button>
-        <button class="control-btn" onclick="document.getElementById('mikuAudio').pause()">⏸</button>
+        <button class="control-btn" onclick="mikuAudio.play()">▶</button>
+        <button class="control-btn" onclick="mikuAudio.pause()">⏸</button>
         <div style="width: 1px; height: 20px; background: #444;"></div>
     </div>
 
-<script>
-window.addEventListener("load", () => {
-    const audio = document.getElementById("mikuAudio");
-    audio.play().catch(() => {
-        document.addEventListener("click", () => {
-            audio.play();
-        }, { once: true });
-    });
-});
-</script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
+    <script type="text/javascript">
+      // 1. Initialize EmailJS - REPLACE WITH YOUR PUBLIC KEY
+      (function(){
+        emailjs.init({ publicKey: "Ey6y4ub4mVvt4N_dJ" });
+      })();
+
+      // 2. Handle Form Submission
+      const form = document.getElementById('contact-form');
+      form.addEventListener('submit', function(event) {
+        event.preventDefault(); 
+        
+        const btn = event.target.querySelector('.submit-btn');
+        btn.innerText = "INITIALIZING...";
+
+        // 3. Send email - REPLACE WITH YOUR SERVICE AND TEMPLATE IDS
+        emailjs.sendForm('service_xspuzom', 'template_e9pdjbf', this)
+          .then(() => {
+            btn.innerText = "DATA SENT!";
+            form.reset();
+            setTimeout(() => { btn.innerText = "SEND DATA"; }, 3000);
+          }, (error) => {
+            btn.innerText = "ERROR!";
+            console.log('FAILED...', error);
+          });
+      });
+
+      // Background audio handling
+      window.addEventListener("load", () => {
+        const audio = document.getElementById("mikuAudio");
+        audio.play().catch(() => {
+            document.addEventListener("click", () => { audio.play(); }, { once: true });
+        });
+      });
+    </script>
 </body>
 </html>
