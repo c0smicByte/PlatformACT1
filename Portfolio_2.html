@@ -224,6 +224,18 @@
                 <a href="diner.html" style="color: var(--miku-cyan); text-decoration: none; font-weight: bold; font-size: 12px;">SHOP_LINK →</a>
             </div>
             <div class="project-card">
+                <div style="font-family: monospace; font-size: 10px; color: var(--miku-pink);">ACT_03</div>
+                <h3 style="font-family: 'Orbitron'; margin: 10px 0;">General Knowledge Quiz</h3>
+                <p style="font-family: 'DotGothic16'; font-size: 13px;">Used an Excel or Google Sheets to simulate a system and CSS with a bit of JS.</p>
+                <a href="n/a.html" style="color: var(--miku-cyan); text-decoration: none; font-weight: bold; font-size: 12px;">SHOP_LINK →</a>
+            </div>
+            <div class="project-card">
+                <div style="font-family: monospace; font-size: 10px; color: var(--miku-pink);">ACT_04</div>
+                <h3 style="font-family: 'Orbitron'; margin: 10px 0;">Miku Diner Social Media Planner</h3>
+                <p style="font-family: 'DotGothic16'; font-size: 13px;">Students design a content strategy for a brand or school org.</p>
+                <a href="n/a.html" style="color: var(--miku-cyan); text-decoration: none; font-weight: bold; font-size: 12px;">SHOP_LINK →</a>
+            </div>
+            <div class="project-card">
                 <div style="font-family: monospace; font-size: 10px; color: var(--miku-pink);">ACT_05</div>
                 <h3 style="font-family: 'Orbitron'; margin: 10px 0;">Platform Presentation + Demo</h3>
                 <p style="font-family: 'DotGothic16'; font-size: 13px;">Comparison of different platforms such as desktop, web applications, cloud, local storage, mobile apps, and web apps.</p>
@@ -261,7 +273,6 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
     <script type="text/javascript">
-      // 1. Initialize EmailJS - REPLACE WITH YOUR PUBLIC KEY
       (function(){
         emailjs.init({ publicKey: "Ey6y4ub4mVvt4N_dJ" });
       })();
@@ -274,7 +285,6 @@
         const btn = event.target.querySelector('.submit-btn');
         btn.innerText = "INITIALIZING...";
 
-        // 3. Send email - REPLACE WITH YOUR SERVICE AND TEMPLATE IDS
         emailjs.sendForm('service_xspuzom', 'template_e9pdjbf', this)
           .then(() => {
             btn.innerText = "DATA SENT!";
@@ -286,7 +296,6 @@
           });
       });
 
-      // Background audio handling
       window.addEventListener("load", () => {
         const audio = document.getElementById("mikuAudio");
         audio.play().catch(() => {
